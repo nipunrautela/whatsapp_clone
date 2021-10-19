@@ -1,2 +1,2 @@
 # WhatsApp-Clone
-A repository for make a clone for WhatsApp UI
+A repository for making a clone for WhatsApp UI
