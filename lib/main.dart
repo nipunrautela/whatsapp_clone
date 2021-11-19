@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'WhatApp Clone Example',
+      title: 'WhatsApp Clone Example',
       theme: ThemeData(
         primaryColor: const Color(0XFF25D366),
       ),
@@ -46,10 +46,21 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _tabController =
-        TabController(vsync: this, initialIndex: 1, length: tabs.length);
+        TabController(vsync: this, initialIndex: 0, length: tabs.length);
   }
 
   Color maincolor = const Color(0XFF075E54);
+
+  @override
+  void dispose() {
+    _tabController.removeListener(_handleTabIndex);
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  void _handleTabIndex() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +71,7 @@ class _HomePageState extends State<HomePage>
         backgroundColor: maincolor,
         foregroundColor: Colors.white70,
         bottom: TabBar(
+          indicatorColor: Colors.white,
           controller: _tabController,
           tabs: tabs,
           labelColor: Colors.white70,
@@ -165,14 +177,38 @@ class _HomePageState extends State<HomePage>
           CallScreen(),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
-        child: const Icon(
-          Icons.message,
-          color: Colors.white,
-        ),
-        onPressed: () {},
-      ),
+      floatingActionButton: _buttons(),
     );
+  }
+
+  Widget _buttons() {
+    return _tabController.index == 1
+        ? FloatingActionButton(
+            backgroundColor: Colors.green,
+            child: const Icon(
+              Icons.message,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          )
+        : _tabController.index == 2
+            ? FloatingActionButton(
+                backgroundColor: Colors.green,
+                child: const Icon(
+                  Icons.camera_alt_rounded,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              )
+            : _tabController.index == 3
+                ? FloatingActionButton(
+                    backgroundColor: Colors.green,
+                    child: const Icon(
+                      Icons.call,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {},
+                  )
+                : Container();
   }
 }
