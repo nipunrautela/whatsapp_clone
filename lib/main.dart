@@ -46,7 +46,8 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _tabController =
-        TabController(vsync: this, initialIndex: 0, length: tabs.length);
+        TabController(vsync: this, initialIndex: 1, length: tabs.length);
+    _tabController.addListener(_handleTabIndex);
   }
 
   Color maincolor = const Color(0XFF075E54);
@@ -83,86 +84,35 @@ class _HomePageState extends State<HomePage>
           ),
           PopupMenuButton<Options>(
             onSelected: (Options result) {
-              setState(() {});
+              setState(() {
+                print(result);
+              });
             },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[
+            itemBuilder: (BuildContext context) =>
+                const <PopupMenuEntry<Options>>[
               PopupMenuItem<Options>(
                 value: Options.group,
-                child: TextButton(
-                  child: const Text(
-                    "New group",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onPressed: () => print("New Group"),
-                ),
+                child: Text("New group"),
               ),
               PopupMenuItem<Options>(
-                value: Options.group,
-                child: TextButton(
-                  child: const Text(
-                    "New broadcast",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onPressed: () => print("New broadcast"),
-                ),
+                value: Options.broadcast,
+                child: Text("New broadcast"),
               ),
               PopupMenuItem<Options>(
-                value: Options.group,
-                child: TextButton(
-                  child: const Text(
-                    "Linked devices",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onPressed: () => print("Linked devices"),
-                ),
+                value: Options.linked,
+                child: Text("Linked devices"),
               ),
               PopupMenuItem<Options>(
-                value: Options.group,
-                child: TextButton(
-                  child: const Text(
-                    "Starred messages",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onPressed: () => print("Starred messages"),
-                ),
+                value: Options.starred,
+                child: Text("Starred messages"),
               ),
               PopupMenuItem<Options>(
-                value: Options.group,
-                child: TextButton(
-                  child: const Text(
-                    "Payments",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onPressed: () => print("Payments"),
-                ),
+                value: Options.payments,
+                child: Text("Payments"),
               ),
               PopupMenuItem<Options>(
-                value: Options.group,
-                child: TextButton(
-                  child: const Text(
-                    "Settings",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onPressed: () => print("Settings"),
-                ),
+                value: Options.settings,
+                child: Text("Settings"),
               ),
             ],
           )
