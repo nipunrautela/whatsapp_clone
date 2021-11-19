@@ -17,6 +17,7 @@ class _ChatScreenState extends State<ChatScreen> {
       padding: const EdgeInsets.all(1.0),
       child: ListTile(
         leading: const CircleAvatar(
+          radius: 25,
           backgroundColor: Colors.white,
           backgroundImage: NetworkImage(
             'https://cdn.discordapp.com/attachments/775387982554333204/911101173082247168/download.png',

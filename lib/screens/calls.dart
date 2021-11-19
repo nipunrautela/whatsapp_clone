@@ -20,17 +20,20 @@ class _CallScreenState extends State<CallScreen> {
 
   Widget callCard() {
     return ListTile(
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
           radius: 30,
         ),
         title: const Text("Mr.X"),
 
         // ignore: prefer_const_literals_to_create_immutables
         subtitle: Row(children: [
-          Icon(Icons.call_end, color: Colors.red),
-          SizedBox(width: 3),
-          Text("Yesterday, 11:36pm")
+          const Icon(Icons.call_end, color: Colors.red),
+          const SizedBox(width: 3),
+          const Text("Yesterday, 11:36pm")
         ]),
-        trailing: Icon(Icons.call));
+        trailing: IconButton(
+          icon: const Icon(Icons.call),
+          onPressed: () {},
+        ));
   }
 }

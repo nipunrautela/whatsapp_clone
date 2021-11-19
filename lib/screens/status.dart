@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:story_view/story_view.dart';
 
 class StatusScreen extends StatelessWidget {
   const StatusScreen({Key? key}) : super(key: key);
