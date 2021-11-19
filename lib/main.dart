@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import './screens/calls.dart';
+import './screens/chats.dart';
+import './screens/status.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -10,50 +11,65 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'WhatApp Clone Example',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0XFF25D366),
       ),
-      home: const MyHomePage(title: 'WhatsApp Clone'),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+const List<Tab> tabs = <Tab>[
+  Tab(icon: Icon(Icons.camera_alt)),
+  Tab(text: "CHATS"),
+  Tab(text: "STATUS"),
+  Tab(text: "CALLS"),
+];
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: tabs.length);
+  }
+
+  Color maincolor = const Color(0XFF075E54);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: Colors.teal[800],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'Well, just here for no reason.',
-            ),
-          ],
+        title: const Text("WhatsApp"),
+        elevation: 0.7,
+        backgroundColor: maincolor,
+        foregroundColor: Colors.white70,
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: tabs,
         ),
+        actions: const <Widget>[
+          Icon(Icons.search),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 7),
+          ),
+          Icon(Icons.more_vert),
+        ],
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[],
       ),
     );
   }
