@@ -85,10 +85,7 @@ class StatusScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                     subtitle: const Text("Today, 00:00"),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const StoryPageView())),
+                    onTap: () {},
                   ),
                 ],
               ),
@@ -125,51 +122,13 @@ class StatusScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                     subtitle: const Text("Today, 10:00"),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const StoryPageView())),
+                    onTap: () {},
                   ),
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class StoryPageView extends StatefulWidget {
-  const StoryPageView({Key? key}) : super(key: key);
-
-  @override
-  _StoryPageViewState createState() => _StoryPageViewState();
-}
-
-class _StoryPageViewState extends State<StoryPageView> {
-  final _storyController = StoryController();
-  @override
-  Widget build(BuildContext context) {
-    final controller = StoryController();
-    final List<StoryItem> storyItems = [
-      StoryItem.text(title: "Flutter", backgroundColor: Colors.black),
-      StoryItem.pageImage(
-          url:
-              "https://play-lh.googleusercontent.com/ZyWNGIfzUyoajtFcD7NhMksHEZh37f-MkHVGr5Yfefa-IX7yj9SMfI82Z7a2wpdKCA",
-          controller: _storyController),
-      StoryItem.pageImage(
-          url:
-              "https://jonmgomes.com/wp-content/uploads/2020/03/Liquid-Lightbulb-Animation-V2-800x600-1.gif",
-          controller: _storyController,
-          imageFit: BoxFit.contain),
-    ];
-    return Material(
-      child: StoryView(
-        storyItems: storyItems,
-        controller: controller,
-        inline: false,
-        repeat: true,
       ),
     );
   }
