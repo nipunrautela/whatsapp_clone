@@ -36,6 +36,8 @@ const List<Tab> tabs = <Tab>[
   Tab(text: "CALLS"),
 ];
 
+enum Options { group, broadcast, linked, starred, payments, settings }
+
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
@@ -62,10 +64,96 @@ class _HomePageState extends State<HomePage>
           tabs: tabs,
           labelColor: Colors.white70,
         ),
-        actions: const <Widget>[
-          Icon(Icons.search),
-          Padding(padding: EdgeInsets.symmetric(horizontal: 10.0)),
-          Icon(Icons.more_vert),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {},
+          ),
+          PopupMenuButton<Options>(
+            onSelected: (Options result) {
+              setState(() {});
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[
+              PopupMenuItem<Options>(
+                value: Options.group,
+                child: TextButton(
+                  child: const Text(
+                    "New group",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  onPressed: () => print("New Group"),
+                ),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.group,
+                child: TextButton(
+                  child: const Text(
+                    "New broadcast",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  onPressed: () => print("New broadcast"),
+                ),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.group,
+                child: TextButton(
+                  child: const Text(
+                    "Linked devices",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  onPressed: () => print("Linked devices"),
+                ),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.group,
+                child: TextButton(
+                  child: const Text(
+                    "Starred messages",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  onPressed: () => print("Starred messages"),
+                ),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.group,
+                child: TextButton(
+                  child: const Text(
+                    "Payments",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  onPressed: () => print("Payments"),
+                ),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.group,
+                child: TextButton(
+                  child: const Text(
+                    "Settings",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  onPressed: () => print("Settings"),
+                ),
+              ),
+            ],
+          )
         ],
       ),
       body: TabBarView(
