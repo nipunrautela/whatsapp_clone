@@ -44,7 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
         subtitle: Container(
-          padding: EdgeInsets.only(top: 5.0),
+          padding: const EdgeInsets.only(top: 5.0),
           child: const Text(
             "Bot: This is a Message. It's just a...",
             style: TextStyle(
