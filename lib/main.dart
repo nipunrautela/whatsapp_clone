@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/camera.dart';
 import './screens/calls.dart';
 import './screens/chats.dart';
 import './screens/status.dart';
@@ -42,7 +43,8 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: tabs.length);
+    _tabController =
+        TabController(vsync: this, initialIndex: 1, length: tabs.length);
   }
 
   Color maincolor = const Color(0XFF075E54);
@@ -52,24 +54,36 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         title: const Text("WhatsApp"),
-        elevation: 0.7,
+        elevation: 0.8,
         backgroundColor: maincolor,
         foregroundColor: Colors.white70,
         bottom: TabBar(
           controller: _tabController,
           tabs: tabs,
+          labelColor: Colors.white70,
         ),
         actions: const <Widget>[
           Icon(Icons.search),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 7),
-          ),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 10.0)),
           Icon(Icons.more_vert),
         ],
       ),
       body: TabBarView(
         controller: _tabController,
-        children: <Widget>[],
+        children: const <Widget>[
+          CameraScreen(),
+          ChatScreen(),
+          StatusScreen(),
+          CallScreen(),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        child: const Icon(
+          Icons.message,
+          color: Colors.white,
+        ),
+        onPressed: () {},
       ),
     );
   }
