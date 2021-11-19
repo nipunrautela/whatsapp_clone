@@ -59,20 +59,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return ListView(
       scrollDirection: Axis.vertical,
       padding: const EdgeInsets.all(2.0),
-      children: [
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-        chat,
-      ],
+      children: [for (int i = 0; i < 10; i++) chat],
     );
   }
 }

@@ -36,6 +36,8 @@ const List<Tab> tabs = <Tab>[
   Tab(text: "CALLS"),
 ];
 
+enum Options { group, broadcast, linked, starred, payments, settings }
+
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
@@ -44,7 +46,8 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _tabController =
-        TabController(vsync: this, initialIndex: 0, length: tabs.length);
+        TabController(vsync: this, initialIndex: 1, length: tabs.length);
+    _tabController.addListener(_handleTabIndex);
   }
 
   Color maincolor = const Color(0XFF075E54);
@@ -74,10 +77,45 @@ class _HomePageState extends State<HomePage>
           tabs: tabs,
           labelColor: Colors.white70,
         ),
-        actions: const <Widget>[
-          Icon(Icons.search),
-          Padding(padding: EdgeInsets.symmetric(horizontal: 10.0)),
-          Icon(Icons.more_vert),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {},
+          ),
+          PopupMenuButton<Options>(
+            onSelected: (Options result) {
+              setState(() {
+                print(result);
+              });
+            },
+            itemBuilder: (BuildContext context) =>
+                const <PopupMenuEntry<Options>>[
+              PopupMenuItem<Options>(
+                value: Options.group,
+                child: Text("New group"),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.broadcast,
+                child: Text("New broadcast"),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.linked,
+                child: Text("Linked devices"),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.starred,
+                child: Text("Starred messages"),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.payments,
+                child: Text("Payments"),
+              ),
+              PopupMenuItem<Options>(
+                value: Options.settings,
+                child: Text("Settings"),
+              ),
+            ],
+          )
         ],
       ),
       body: TabBarView(
